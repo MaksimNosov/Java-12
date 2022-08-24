@@ -6,11 +6,14 @@ public class Book extends Product {
         this.author = author;
     }
 
-//    public String getAuthor() {
-//        return author;
-//    }
-
-//    public void setAuthor(String author) {
-//        this.author = author;
-//    }
+    public boolean matches(String search) {
+        if (super.matches(search)) { // вызов метода matches в версии описанной в Product
+            return true;
+        }
+        if (author.contains(search)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -23,4 +23,39 @@ public class ProductManagerTest {
 
         Assertions.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void shouldSearchByRichModel() {
+        Product[] products = {product1, product2, product3, product4};
+        doReturn(products).when(repo).findAll();
+
+        Product[] expected = {product4};
+        Product[] actual = manager.searchBy("Manufacture 2");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSearchByRichModel2() {
+        Product[] products = {product1, product2, product3, product4};
+        doReturn(products).when(repo).findAll();
+
+        Product[] expected = {product3};
+        Product[] actual = manager.searchBy("Author 2");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSearchByRichModel3() {
+        Product[] products = {product1, product2, product3, product4};
+        doReturn(products).when(repo).findAll();
+
+        Product[] expected = {product2};
+        Product[] actual = manager.searchBy("Smartphone 1");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+
 }
