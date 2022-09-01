@@ -14,12 +14,34 @@ public class ProductManagerTest {
     Product product4 = new Smartphone(44, "Smartphone 2", 400, "Manufacture 2");
 
     @Test
-    public void shouldSearchBy() {
+    public void shouldSearchByName() {      //находится ровно один товар
         Product[] products = {product1, product2, product3, product4};
         doReturn(products).when(repo).findAll();
 
         Product[] expected = {product3};
         Product[] actual = manager.searchBy("Book 2");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSearchByName2() {     //находится 0 товаров, т.е. ни один товар не подходит
+        Product[] products = {product1, product2, product3, product4};
+        doReturn(products).when(repo).findAll();
+
+        Product[] expected = {};
+        Product[] actual = manager.searchBy("Book 3");
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSearchByName3() {     //находится несколько товаров
+        Product[] products = {product1, product2, product3, product4};
+        doReturn(products).when(repo).findAll();
+
+        Product[] expected = {product1, product3};
+        Product[] actual = manager.searchBy("Book");
 
         Assertions.assertArrayEquals(expected, actual);
     }
