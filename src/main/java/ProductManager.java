@@ -6,11 +6,12 @@ public class ProductManager {
     }
 
     public Product[] searchBy(String text) {
-        Product[] result = new Product[1]; // тут будем хранить подошедшие запросу продукты
-        for (Product product: repo.findAll()) {
+        Product[] result = new Product[0];
+        ProductRepository tmp = new ProductRepository();
+        for (Product product : repo.findAll()) {
             if (matches(product, text)) {
-
-                result[result.length - 1] = product;
+                tmp.save(product);
+                result = tmp.findAll();
             }
         }
         return result;
